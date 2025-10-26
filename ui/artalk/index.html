@@ -203,11 +203,10 @@
       import Artalk from './src/main'
       var artalk = Artalk.init({
         el: '#comments',
+        pageKey: 'https://artalk.js.org/guide/intro.html',
+        pageTitle: 'Artalk Home',
         server: 'http://localhost:23366',
-        site: '游钓四方的博客',
-        pageKey: window.location.pathname,
-        vote: false,
-        theme: 'fooleap',
+        site: 'ArtalkDocs',
       })
 
       window.artalk = artalk
