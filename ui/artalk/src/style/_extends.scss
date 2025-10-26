@@ -1,20 +1,21 @@
 .atk-slim-scrollbar {
   &::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 2px;
+    height: 2px;
     background: transparent;
   }
 
   &::-webkit-scrollbar-thumb,
-  &::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(86, 86, 86, 0.3);
+&::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(86, 86, 86, 0.4);
+    border-radius: 1px;
   }
 
   &::-webkit-scrollbar-thumb:vertical:hover {
-    background: rgba(65, 74, 82, 0.77);
+    background: rgba(65, 74, 82, 0.8);
   }
 
   &::-webkit-scrollbar-thumb:vertical:active {
-    background: rgba(41, 47, 53, 0.77);
+    background: rgba(41, 47, 53, 0.9);
   }
 }

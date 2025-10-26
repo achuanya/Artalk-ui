@@ -11,7 +11,10 @@ export default class Preview extends EditorPlugin {
     super(kit)
 
     this.kit.useMounted(() => {
-      this.usePanel(`<div class="atk-editor-plug-preview"></div>`)
+      this.usePanel(`<div class="atk-editor-plug-preview">
+        <div class="atk-preview-title">Markdown Preview</div>
+        <div class="atk-preview-content"></div>
+      </div>`)
 
       // initialize plug button
       this.useBtn(
@@ -35,6 +38,9 @@ export default class Preview extends EditorPlugin {
   }
 
   updateContent() {
-    this.$panel!.innerHTML = this.kit.useEditor().getContentMarked()
+    const contentEl = this.$panel!.querySelector('.atk-preview-content') as HTMLElement
+    if (contentEl) {
+      contentEl.innerHTML = this.kit.useEditor().getContentMarked()
+    }
   }
 }

@@ -26,7 +26,7 @@
         background: #f4f4f4;
       }
       body.dark-mode {
-        background: #000;
+        background: #23272e;
       }
       .card {
         margin: 0 auto;
@@ -39,8 +39,7 @@
         border: 1px solid transparent;
       }
       body.dark-mode .card {
-        background: #1e2223;
-        border: 1px solid #2d3235;
+        background: #23272e;
       }
       .card:not(:last-child) {
         margin-bottom: 10px;
@@ -111,13 +110,13 @@
       .to-night {
         z-index: 99999;
         left: 25px;
-        background: #1e2223;
+        background: #3a4048;
         color: #fff;
       }
       body.dark-mode .to-night {
-        background: #006fd9;
+        background: #f6f8f9;
         border: 1px solid #2d3235;
-        color: #fff;
+        color: #000;
       }
       .to-top {
         right: 25px;
@@ -128,7 +127,7 @@
     <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
     <script>
       // VConsole will be exported to `window.VConsole` by default.
-      if (navigator.userAgentData.mobile) {
+      if (navigator.userAgentData && navigator.userAgentData.mobile) {
         var vConsole = new window.VConsole()
       }
     </script>
@@ -204,10 +203,11 @@
       import Artalk from './src/main'
       var artalk = Artalk.init({
         el: '#comments',
-        pageKey: 'https://artalk.js.org/guide/intro.html',
-        pageTitle: 'Artalk Home',
         server: 'http://localhost:23366',
-        site: 'ArtalkDocs',
+        site: '游钓四方的博客',
+        pageKey: window.location.pathname,
+        vote: false,
+        theme: 'fooleap',
       })
 
       window.artalk = artalk

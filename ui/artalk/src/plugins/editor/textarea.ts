@@ -48,8 +48,18 @@ export default class Textarea extends EditorPlugin {
 
   // Resize the textarea height by content
   public adaptiveHeightByContent() {
-    const diff = this.kit.useUI().$textarea.offsetHeight - this.kit.useUI().$textarea.clientHeight
-    this.kit.useUI().$textarea.style.height = '0px' // it's a magic. 若不加此行，内容减少，高度回不去
-    this.kit.useUI().$textarea.style.height = `${this.kit.useUI().$textarea.scrollHeight + diff}px`
+    const textarea = this.kit.useUI().$textarea
+    const diff = textarea.offsetHeight - textarea.clientHeight
+    
+    // Reset height to auto to get accurate scrollHeight
+    textarea.style.height = 'auto'
+    
+    // Get the minimum height from computed styles
+    const computedStyle = window.getComputedStyle(textarea)
+    const minHeight = parseInt(computedStyle.minHeight)
+    const newHeight = Math.max(textarea.scrollHeight + diff, minHeight)
+    
+    // Set the new height
+    textarea.style.height = `${newHeight}px`
   }
 }

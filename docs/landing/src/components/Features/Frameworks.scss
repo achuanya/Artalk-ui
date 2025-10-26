@@ -39,8 +39,8 @@
 
       &.active,
       &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
-        box-shadow: 0 0 0 12px rgba(0, 0, 0, 0.04);
+        background-color: var(--at-toolbar-x-color);
+        box-shadow: 0 0 0 12px rgba(0, 0, 0, 0.5);
       }
     }
   }

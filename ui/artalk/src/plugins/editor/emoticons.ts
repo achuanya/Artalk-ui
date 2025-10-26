@@ -20,6 +20,8 @@ export default class Emoticons extends EditorPlugin {
 
   private $grpWrap!: HTMLElement
   private $grpSwitcher!: HTMLElement
+  private $hiddenElements: HTMLElement[] = []
+  private isEmojiPanelVisible = false
 
   constructor(kit: PlugKit) {
     super(kit)
@@ -47,10 +49,27 @@ export default class Emoticons extends EditorPlugin {
         setTimeout(() => {
           this.changeListHeight()
         }, 30)
+
+        // 显示表情面板时隐藏header和button
+        this.hideHeaderAndButtons()
+        this.isEmojiPanelVisible = true
       })()
     })
     this.usePanelHide(() => {
       this.$panel!.parentElement!.style.height = ''
+      
+      // 隐藏表情面板时恢复被隐藏的元素
+      this.restoreHiddenElements()
+      this.isEmojiPanelVisible = false
+    })
+
+    // 监听所有面板关闭事件，确保在任何情况下都能恢复隐藏的元素
+    this.kit.useEvents().on('panel-hide', (plugin) => {
+      // 如果当前有隐藏的元素，且不是Emoji插件自己被隐藏，则恢复元素
+      if (this.$hiddenElements.length > 0 && plugin !== this) {
+        this.restoreHiddenElements()
+        this.isEmojiPanelVisible = false
+      }
     })
 
     // 表情包预加载
@@ -220,6 +239,19 @@ export default class Emoticons extends EditorPlugin {
 
   /** 初始化表情列表界面 */
   private initEmoticonsList() {
+    // 表情分类切换 bar (移动到上方)
+    if (this.emoticons.length > 1) {
+      this.$grpSwitcher = Utils.createElement(`<div class="atk-grp-switcher"></div>`)
+      this.$panel!.append(this.$grpSwitcher)
+      this.emoticons.forEach((grp, index) => {
+        const $item = Utils.createElement('<span />')
+        $item.innerText = grp.name
+        $item.setAttribute('data-index', String(index))
+        $item.onclick = () => this.openGrp(index)
+        this.$grpSwitcher.append($item)
+      })
+    }
+
     // 表情列表
     this.$grpWrap = Utils.createElement(`<div class="atk-grp-wrap"></div>`)
     this.$panel!.append(this.$grpWrap)
@@ -255,19 +287,6 @@ export default class Emoticons extends EditorPlugin {
         }
       })
     })
-
-    // 表情分类切换 bar
-    if (this.emoticons.length > 1) {
-      this.$grpSwitcher = Utils.createElement(`<div class="atk-grp-switcher"></div>`)
-      this.$panel!.append(this.$grpSwitcher)
-      this.emoticons.forEach((grp, index) => {
-        const $item = Utils.createElement('<span />')
-        $item.innerText = grp.name
-        $item.setAttribute('data-index', String(index))
-        $item.onclick = () => this.openGrp(index)
-        this.$grpSwitcher.append($item)
-      })
-    }
 
     // 默认打开第一个分类
     if (this.emoticons.length > 0) this.openGrp(0)
@@ -311,5 +330,33 @@ export default class Emoticons extends EditorPlugin {
     })
 
     return text
+  }
+
+  /** 隐藏header和button */
+  private hideHeaderAndButtons() {
+    const editor = this.kit.useEditor()
+    const editorEl = editor.getEl()
+    
+    // 查找并隐藏 atk-header
+    const $header = editorEl.querySelector('.atk-header') as HTMLElement
+    if ($header && $header.style.display !== 'none') {
+      $header.style.display = 'none'
+      this.$hiddenElements.push($header)
+    }
+    
+    // 查找并隐藏 submit button
+    const $submitBtn = editorEl.querySelector('.atk-send-btn') as HTMLElement
+    if ($submitBtn && $submitBtn.style.display !== 'none') {
+      $submitBtn.style.display = 'none'
+      this.$hiddenElements.push($submitBtn)
+    }
+  }
+
+  /** 恢复被隐藏的元素 */
+  private restoreHiddenElements() {
+    this.$hiddenElements.forEach(($el) => {
+      $el.style.display = ''
+    })
+    this.$hiddenElements = []
   }
 }

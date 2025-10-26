@@ -65,6 +65,7 @@ export class PluginManager implements IEditorPluginManager {
   private plugins: EditorPlugin[] = []
   private openedPlug: EditorPlugin | null = null
   private events = new EventManager<EditorEventPayloadMap>()
+  private outsideClickHandler?: (event: MouseEvent) => void
 
   constructor(public opts: PluginManagerOptions) {
     let confLoaded = false // config not loaded at first time
@@ -117,6 +118,8 @@ export class PluginManager implements IEditorPluginManager {
     this.plugins = []
     this.events = new EventManager()
     if (this.openedPlug) this.closePluginPanel()
+    // Clean up outside click listener
+    this.removeOutsideClickListener()
   }
 
   private loadPluginUI() {
@@ -185,17 +188,40 @@ export class PluginManager implements IEditorPluginManager {
       }
     })
 
-    this.getEditor().getUI().$plugPanelWrap.style.display = ''
+    // Set different heights for different plugins
+    const $plugPanelWrap = this.getEditor().getUI().$plugPanelWrap
+    if (this.isPreviewPlugin(plug)) {
+      // Preview plugin gets more height for better content display
+      $plugPanelWrap.style.height = '100%'
+    } else {
+      // Other plugins use default height
+      $plugPanelWrap.style.height = '100%'
+    }
+
+    $plugPanelWrap.style.display = ''
     this.openedPlug = plug
+
+    // Add outside click listener to close panel
+    this.addOutsideClickListener()
   }
 
   /** Close the editor plugin panel */
   closePluginPanel() {
     if (!this.openedPlug) return
 
+    // Remove active class from all buttons when closing panel
+    this.opts
+      .getEditor()
+      .getUI()
+      .$plugBtnWrap.querySelectorAll('.active')
+      .forEach((item) => item.classList.remove('active'))
+
     this.getEditor().getUI().$plugPanelWrap.style.display = 'none'
     this.events.trigger('panel-hide', this.openedPlug)
     this.openedPlug = null
+
+    // Remove outside click listener
+    this.removeOutsideClickListener()
   }
 
   /** Get the content which is transformed by plugs */
@@ -206,5 +232,46 @@ export class PluginManager implements IEditorPluginManager {
       result = aPlug.contentTransformer(result)
     })
     return result
+  }
+
+  /** Add outside click listener to close panel */
+  private addOutsideClickListener() {
+    if (this.outsideClickHandler) return // Already added
+
+    this.outsideClickHandler = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      const plugPanelWrap = this.getEditor().getUI().$plugPanelWrap
+      const plugBtnWrap = this.getEditor().getUI().$plugBtnWrap
+
+      // Check if current opened plugin is Preview
+      if (this.openedPlug && this.isPreviewPlugin(this.openedPlug)) {
+        return // Don't close Preview panel on outside click
+      }
+
+      // Check if click is outside both panel and button areas
+      if (
+        !plugPanelWrap.contains(target) &&
+        !plugBtnWrap.contains(target) &&
+        this.openedPlug
+      ) {
+        this.closePluginPanel()
+      }
+    }
+
+    // Add listener to document to catch all clicks
+    document.addEventListener('click', this.outsideClickHandler)
+  }
+
+  /** Remove outside click listener */
+  private removeOutsideClickListener() {
+    if (this.outsideClickHandler) {
+      document.removeEventListener('click', this.outsideClickHandler)
+      this.outsideClickHandler = undefined
+    }
+  }
+
+  /** Check if the plugin is Preview plugin */
+  private isPreviewPlugin(plugin: EditorPlugin): boolean {
+    return plugin.constructor.name === 'Preview'
   }
 }

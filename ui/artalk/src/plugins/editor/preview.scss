@@ -1,7 +1,50 @@
 .atk-editor-plug-preview {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
   width: 100%;
+  padding: 0;
+  position: relative;
+  
+  /* 隐藏滚动条 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  
+  /* Webkit browsers (Chrome, Safari, etc.) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.atk-preview-title {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 140px;
+  // background: var(--at-color-preview-title-bg);
+  color: var(--at-color-preview-title);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-bottom: 1px solid var(--at-color-border);
+  z-index: 1;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.atk-preview-content {
   padding: 10px calc(10px + 5px);
+  height: calc(100% - 37px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+  /* 隐藏滚动条 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  
+  /* Webkit browsers (Chrome, Safari, etc.) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

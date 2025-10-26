@@ -2,12 +2,12 @@
   $editor-padding: 10px;
   position: relative;
   overflow: hidden;
-  background: var(--at-color-bg);
-  border: 1px solid var(--at-color-border);
+  // background: var(--at-color-bg);
+  // border: 1px solid var(--at-color-border);
   border-radius: $block-radius;
   margin-bottom: 10px;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 640px) {
     margin-bottom: 7px;
   }
 
@@ -19,27 +19,59 @@
   & > .atk-header {
     display: flex;
     flex-direction: row;
-    padding: 10px 14px 0;
+    padding: 7px 0;
+    gap: 15px;
+
+    @media only screen and (max-width: 640px) {
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 8px 0;
+    }
 
     input {
       flex: 1;
-      width: 100%;
-      font-size: 14px;
-      background: transparent;
-      border: 2px solid transparent;
+      min-width: 0; // 防止flex子元素溢出
+      font-size: 12px;
+      background: var(--at-color-bg);
+      border: 2px solid var(--at-textarea-border-color);
       border-radius: calc($block-radius / 2);
-      padding: 6px 5px;
+      height: 32px;
       resize: none;
       outline: none;
+      text-indent: 10px;
 
-      &:not(:last-child) {
-        margin-right: 2px;
+      @media only screen and (max-width: 640px) {
+        width: 70%;
+        max-width: 280px;
+        flex: none;
       }
+
+      // 在中等屏幕尺寸下添加过渡效果
+      @media only screen and (min-width: 641px) and (max-width: 768px) {
+        min-width: 120px;
+      }
+    }
+
+    // 确保每个输入框都有合适的最小宽度
+    .atk-name {
+      min-width: 80px;
+    }
+
+    .atk-email {
+      min-width: 120px;
+    }
+
+    .atk-link {
+      min-width: 100px;
     }
   }
 
   & > .atk-textarea-wrap {
     position: relative;
+    background-color: var(--at-color-bg);
+    border-radius: inherit;
+    border: 2px solid var(--at-textarea-border-color);
 
     & > .atk-textarea {
       display: block;
@@ -47,15 +79,15 @@
       color: var(--at-color-font);
       font-size: 15px;
       background-color: var(--at-color-bg);
-      border: 2px solid transparent;
-      border-radius: calc($block-radius / 2);
       width: 100%;
-      min-height: 120px;
+      min-height: 74px;
       margin-top: 2px;
-      padding: 10px 20px;
+      padding: 10px 10px;
       resize: none;
       word-wrap: break-word;
       outline: none;
+      border: none;
+      border-radius: 4px;
     }
 
     & > .atk-comment-closed {
@@ -72,21 +104,28 @@
 
   & > .atk-plug-panel-wrap {
     position: relative;
-    height: 180px;
     width: 100%;
     overflow: hidden;
-    border-top: 1px solid var(--at-color-border);
+    // border-top: 1px solid var(--at-color-border);
     animation: 0.3s both atkFadeIn;
     transition: 0.2s height ease-in-out;
   }
 
-  & > .atk-bottom {
+  .atk-bottom {
     display: flex;
     flex-direction: row;
     row-gap: 5px;
     justify-content: space-between;
-    padding: 5px;
+    padding: 2px 0 2px 2px;
     flex-wrap: wrap;
+    border-top: 2px solid var(--at-textarea-border-color);
+    background-color: var(--at-toolbar-background-color);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    @media only screen and (max-width: 640px) {
+      padding-left: 8px;
+    }
 
     & > .atk-item {
       display: flex;
@@ -112,9 +151,9 @@
       display: flex;
       justify-content: center;
       place-items: center;
-      padding: 0 10px;
+      padding: 0 5px;
       line-height: 30px;
-      height: 30px;
+      height: 25px;
       cursor: pointer;
       color: var(--at-color-grey);
       font-size: $font-size;
@@ -127,11 +166,12 @@
       }
 
       &:hover {
-        background: var(--at-color-bg-grey);
+        background: var(--at-color-bg-grey-transl);
       }
 
       &.active {
         color: var(--at-color-main);
+        background: var(--at-color-bg-grey-transl);
 
         svg.markdown path {
           fill: var(--at-color-main);
@@ -165,13 +205,7 @@
       overflow: hidden;
       border-radius: calc($block-radius / 2);
 
-      &:hover {
-        .atk-cancel {
-          background: rgba(0, 0, 0, 4%);
-        }
-      }
-
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 640px) {
         padding: 0;
 
         .atk-text-wrap {
@@ -194,14 +228,14 @@
         padding: 0 10px;
         font-weight: 700;
         height: 100%;
-        background: rgba(0, 0, 0, 2%);
+        background: rgba(0, 0, 0, 0.15);
       }
     }
 
     .atk-send-btn {
       background: var(--at-color-main);
-      color: #fff;
-      font-size: $font-size;
+      color: var(--at-color-bg);
+      font-size: 14px;
       border: none;
       margin: 0;
       height: 30px;
@@ -211,7 +245,7 @@
       outline: none;
       border-radius: calc($block-radius / 2);
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 640px) {
         min-width: 6em;
       }
 
@@ -225,8 +259,138 @@
     z-index: 3;
     position: absolute;
     right: -2px;
-    bottom: 40px;
+    bottom: 116px;
     width: 225px;
     opacity: 0.83;
+  }
+}
+
+// 仿 Fooleap Disqus 布局 
+.atk-comment-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+
+  @media only screen and (max-width: 640px) {
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .atk-comment-avatar {
+    flex-shrink: 0;
+    padding-left: 10px;
+
+    .atk-comment-avatar-image {
+      width: 50px;
+      height: 50px;
+      border-radius: calc($block-radius / 2);
+      display: block;
+    }
+
+    @media only screen and (max-width: 640px) {
+      padding-left: 10px;
+    }
+  }
+
+  .atk-comment-form {
+    flex: 1;
+    min-width: 0; // 防止flex子元素溢出
+  }
+
+  // 折叠状态样式
+  &.atk-collapsed {
+    cursor: pointer;
+    
+    .atk-main-editor {
+      .atk-textarea-wrap {
+        .atk-textarea {
+          height: 44px !important;
+          min-height: 44px !important;
+          resize: none;
+          cursor: pointer;
+        }
+      }
+    }
+
+    // 折叠状态下隐藏所有元素（除了textarea）
+    .atk-collapsible-section[data-section="bottom"],
+    .atk-collapsible-section[data-section="header"],
+    .atk-collapsible-section[data-section="panel"],
+    .atk-collapsible-section[data-section="notify"],
+    .atk-collapsible-section[data-section="submit"] {
+      display: none !important;
+    }
+  }
+
+  // 展开动画
+  .atk-collapsible-section {
+    transition: all 0.3s ease-in-out;
+    
+    &.atk-expanding {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    
+    &:not(.atk-expanding) {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // 特殊处理textarea区域的动画
+  .atk-textarea-wrap {
+    transition: all 0.3s ease-in-out;
+    
+    .atk-textarea {
+      transition: height 0.3s ease-in-out, min-height 0.3s ease-in-out;
+    }
+  }
+
+  // 展开状态下的样式
+  &:not(.atk-collapsed) {
+    .atk-textarea-wrap {
+      .atk-textarea {
+        height: auto;
+        min-height: 74px;
+        cursor: text;
+      }
+    }
+  }
+
+  // 回复模式下头像缩小样式（仅PC端生效）
+  @media only screen and (min-width: 769px) {
+    &:has(.atk-state-btn) {
+      .atk-comment-avatar {
+        .atk-comment-avatar-image {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+  }
+}
+
+// 新按钮样式
+.atk-new-btn {
+  border: none;
+  white-space: nowrap;
+  border-radius: 4px;
+  height: 38px;
+  width: 80px;
+  display: inline-block;
+  background-color: var(--at-btn-background-color);
+  color: var(--at-btn-font-color) !important;
+  cursor: pointer;
+  line-height: 38px;
+}
+
+.atk-item {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 0px 0px 0px;
+
+  @media only screen and (max-width: 640px) {
+    padding: 5px 0;
   }
 }

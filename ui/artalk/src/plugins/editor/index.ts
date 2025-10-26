@@ -6,6 +6,7 @@ import Submit from './submit'
 import StateReply from './state-reply'
 import StateEdit from './state-edit'
 import Closable from './closable'
+import Collapsible from './collapsible'
 import HeaderEvent from './header-event'
 import HeaderUser from './header-user'
 import HeaderLink from './header-link'
@@ -13,6 +14,7 @@ import Mover from './mover'
 import Emoticons from './emoticons'
 import Upload from './upload'
 import Preview from './preview'
+import AvatarUpdater from './avatar-updater'
 import type { Config } from '@/types'
 
 /** The default enabled plugs */
@@ -22,6 +24,7 @@ const EDITOR_PLUGS: (typeof EditorPlugin)[] = [
   HeaderEvent,
   HeaderUser,
   HeaderLink,
+  AvatarUpdater, // 添加头像更新插件
   Textarea,
   Submit,
   SubmitBtn,
@@ -29,6 +32,7 @@ const EDITOR_PLUGS: (typeof EditorPlugin)[] = [
   StateReply,
   StateEdit,
   Closable,
+  Collapsible, // 添加折叠插件
 
   // Extensions
   Emoticons,

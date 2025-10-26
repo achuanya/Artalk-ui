@@ -1,21 +1,30 @@
-<div class="atk-main-editor">
-  <div class="atk-header">
-    <input name="name" class="atk-name" type="text" required="required" />
-    <input name="email" class="atk-email" type="email" required="required" />
-    <input name="link" class="atk-link" type="url" />
+<div class="atk-comment-box atk-collapsed">
+  <div class="atk-comment-avatar">
+    <img class="atk-comment-avatar-image" src="https://www.gravatar.com/avatar/5573cb7cf794d7bcdd451234e4913566770381462e24cb478e35c3bcea30cb13?sha256=1&d=mp&s=50" />
   </div>
-  <div class="atk-textarea-wrap">
-    <textarea class="atk-textarea"></textarea>
-  </div>
-  <div class="atk-plug-panel-wrap" style="display: none"></div>
-  <div class="atk-bottom">
-    <div class="atk-item atk-bottom-left">
-      <span class="atk-state-wrap"></span>
-      <span class="atk-plug-btn-wrap"></span>
+  <div class="atk-comment-form">
+    <div class="atk-main-editor">
+      <div class="atk-textarea-wrap atk-collapsible-section" data-section="textarea">
+        <textarea class="atk-textarea" placeholder=""></textarea>
+        <div></div>
+        <div class="atk-bottom atk-collapsible-section" data-section="bottom">
+          <div class="atk-item atk-bottom-left">
+            <span class="atk-state-wrap"></span>
+            <span class="atk-plug-btn-wrap"></span>
+          </div>
+        </div>
+      </div>
+      <div class="atk-header atk-collapsible-section" data-section="header">
+        <input name="name" class="atk-name" type="text" required="required" />
+        <input name="email" class="atk-email" type="email" required="required" />
+        <input name="link" class="atk-link" type="url" />
+      </div>
+      <div class="atk-plug-panel-wrap atk-collapsible-section" data-section="panel"></div>
+
+      <div class="atk-notify-wrap atk-collapsible-section" data-section="notify"></div>
+      <div class="atk-item atk-collapsible-section" data-section="submit">
+        <button type="button" class="atk-send-btn atk-new-btn"></button>
+      </div>
     </div>
-    <div class="atk-item">
-      <button type="button" class="atk-send-btn"></button>
-    </div>
   </div>
-  <div class="atk-notify-wrap"></div>
 </div>

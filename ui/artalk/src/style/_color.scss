@@ -10,7 +10,7 @@
   --at-color-bg: #fff;
   --at-color-bg-transl: rgba(255, 255, 255, 0.94);
   --at-color-bg-grey: #f3f4f5;
-  --at-color-bg-grey-transl: rgba(244, 244, 244, 0.75);
+  --at-color-bg-grey-transl: #e0e0e0;
   --at-color-bg-light: rgba(29, 161, 242, 0.1);
   --at-color-main: #0083ff;
   --at-color-red: #ff5652;
@@ -18,25 +18,54 @@
   --at-color-yellow: #ff7c37;
   --at-color-green: #4caf50;
   --at-color-gradient: linear-gradient(180deg, transparent, rgba(255, 255, 255));
+  --at-color-preview-title: #697182;
+  --at-color-preview-title-bg: rgba(244, 244, 244, 0.8);
+  --at-textarea-border-color:#dbdfe4;
+  --at-toolbar-background-color: #f6f8f9;
+  --at-btn-background-color: rgba(29,47,58,0.75);
+  --at-btn-font-color: #fff;
+  --at-toolbar-x-color: #e0e0e0;
 
   &.atk-dark-mode {
     --at-color-font: #fff;
     --at-color-deep: #e7e7e7;
     --at-color-sub: #e7e7e7;
     --at-color-grey: #fff;
-    --at-color-meta: #fff;
+    --at-color-meta: #e2e8f0;
     --at-color-border: #2d3235;
     --at-color-light: #687a86;
-    --at-color-bg: #1e2224;
-    --at-color-bg-transl: rgba(30, 34, 36, 0.95);
-    --at-color-bg-grey: #46494e;
-    --at-color-bg-grey-transl: rgba(8, 8, 8, 0.95);
+    --at-color-bg: #2c3138;
+    --at-color-bg-transl: #2c3138;
+    --at-color-bg-grey: #23272e;
+    --at-color-bg-grey-transl: #23272e;
     --at-color-bg-light: rgba(29, 161, 242, 0.1);
-    --at-color-main: #0083ff;
+
+    // Button、Title
+    --at-color-main: #d19a66;
+    
     --at-color-red: #ff5652;
     --at-color-pink: #fa5a57;
     --at-color-yellow: #ff7c37;
     --at-color-green: #4caf50;
     --at-color-gradient: linear-gradient(180deg, transparent, rgba(30, 34, 36, 1));
+    
+    // Markdown Preview 
+    --at-color-preview-title: #e7e7e7;
+    --at-color-preview-title-bg: rgba(35, 39, 46, 0.8);
+
+    // 评论框描边
+    --at-textarea-border-color:#353b44;
+
+    // 工具栏背景色
+    --at-toolbar-background-color: #3a4048;
+
+    // 按钮背景色
+    --at-btn-background-color: #3a4048;
+
+    // 按钮字体颜色
+    --at-btn-font-color: #fff;
+
+    // 工具栏关闭按钮颜色
+    --at-toolbar-x-color: rgba(0, 0, 0, 0.04);
   }
 }
