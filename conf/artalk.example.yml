@@ -420,7 +420,7 @@ frontend:
   # Gravatar
   gravatar:
     # API URL
-    mirror: https://www.gravatar.com/avatar/
+    mirror: https://cn.cravatar.com/avatar/
     # API parameters
     params: sha256=1&d=mp&s=240
   # Comment pagination

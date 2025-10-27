@@ -399,7 +399,7 @@ gravatar: {
 **Gravatar 镜像地址**
 
 - 类型：`String`
-- 默认值：`"https://www.gravatar.com/avatar/"`
+- 默认值：`"https://cn.cravatar.com/avatar/"`
 
 如果你觉得 Gravatar 头像加载速度不理想，可以尝试替换。
 

@@ -255,7 +255,7 @@ ATK_TRUSTED_DOMAINS_0="https://a.com"
 | **ATK_FRONTEND_EDITORTRAVEL** | `true` | Movable comment box | frontend.editorTravel (UI Settings > Movable comment box) |
 | **ATK_FRONTEND_EMOTICONS** | `"https://cdn.jsdelivr.net/gh/ArtalkJS/Emoticons/grps/default.json"` | Emoticons | frontend.emoticons (UI Settings > Emoticons) |
 | **ATK_FRONTEND_FLATMODE** | `"auto"` | Flatten mode (可选：`["auto", "true", "false"]`) | frontend.flatMode (UI Settings > Flatten mode) |
-| **ATK_FRONTEND_GRAVATAR_MIRROR** | `"https://www.gravatar.com/avatar/"` | API URL | frontend.gravatar.mirror (UI Settings > Gravatar > API URL) |
+| **ATK_FRONTEND_GRAVATAR_MIRROR** | `"https://cn.cravatar.com/avatar/"` | API URL | frontend.gravatar.mirror (UI Settings > Gravatar > API URL) |
 | **ATK_FRONTEND_GRAVATAR_PARAMS** | `"sha256=1&d=mp&s=240"` | API parameters | frontend.gravatar.params (UI Settings > Gravatar > API parameters) |
 | **ATK_FRONTEND_HEIGHTLIMIT_CHILDREN** | `400` | Sub-comment area height limit (unit: px) | frontend.heightLimit.children (UI Settings > Content height limit > Sub-comment area height limit) |
 | **ATK_FRONTEND_HEIGHTLIMIT_CONTENT** | `300` | Comment content height limit (unit: px) | frontend.heightLimit.content (UI Settings > Content height limit > Comment content height limit) |

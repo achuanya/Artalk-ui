@@ -401,7 +401,7 @@ gravatar: {
 **Gravatar Mirror URL**
 
 - Type: `String`
-- Default: `"https://www.gravatar.com/avatar/"`
+- Default: `"https://cn.cravatar.com/avatar/"`
 
 If you find Gravatar avatar loading speed unsatisfactory, you can try replacing it.
 

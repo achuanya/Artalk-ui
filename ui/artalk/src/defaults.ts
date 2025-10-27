@@ -33,7 +33,7 @@ export const Defaults: Readonly<RequiredExcept<Config, ExcludedKeys>> = {
   statPageKeyAttr: 'data-page-key',
 
   gravatar: {
-    mirror: 'https://www.gravatar.com/avatar/',
+    mirror: 'https://cn.cravatar.com/avatar/',
     params: 'sha256=1&d=mp&s=240',
   },
 
