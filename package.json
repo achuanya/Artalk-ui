@@ -52,6 +52,7 @@
     "prettier": "3.3.3",
     "rollup": "4.24.0",
     "sass": "1.80.3",
+    "stylelint": "^16.8.1",
     "terser": "5.36.0",
     "tsx": "^4.19.1",
     "typedoc": "^0.26.10",
@@ -65,6 +66,6 @@
     "vue-eslint-parser": "^9.4.3"
   },
   "browserslist": [
-    ">0.5%, maintained node versions, not dead, not op_mini all, last 2 years"
+    ">0.5%, not dead, not op_mini all, last 2 years"
   ]
 }

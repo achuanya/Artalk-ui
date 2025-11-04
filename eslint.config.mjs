@@ -4,7 +4,7 @@ import url from 'node:url'
 import { fixupPluginRules } from '@eslint/compat'
 import pluginCompat from 'eslint-plugin-compat'
 import eslintJs from '@eslint/js'
-import pluginTS from '@typescript-eslint/eslint-plugin'
+// import pluginTS from '@typescript-eslint/eslint-plugin'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import pluginImportX from 'eslint-plugin-import-x'
 import pluginReact from 'eslint-plugin-react'
@@ -64,7 +64,6 @@ export default eslintTs.config(
       },
     },
     plugins: {
-      '@typescript-eslint': pluginTS,
       'import-x': pluginImportX,
       artalk: pluginArtalk,
     },

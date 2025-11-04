@@ -51,6 +51,10 @@
       @media only screen and (min-width: 641px) and (max-width: 768px) {
         min-width: 120px;
       }
+
+      &:focus {
+        border-color: var(--at-textarea-focus-border-color);
+      }
     }
 
     // 确保每个输入框都有合适的最小宽度
@@ -72,6 +76,15 @@
     background-color: var(--at-color-bg);
     border-radius: inherit;
     border: 2px solid var(--at-textarea-border-color);
+    transition: border-color 0.2s ease-in-out;
+
+    &:focus-within {
+      border-color: var(--at-textarea-focus-border-color);
+
+      .atk-bottom {
+        border-top-color: var(--at-textarea-focus-border-color);
+      }
+    }
 
     & > .atk-textarea {
       display: block;
