@@ -94,7 +94,6 @@
       background-color: var(--at-color-bg);
       width: 100%;
       min-height: 74px;
-      margin-top: 2px;
       padding: 10px 10px;
       resize: none;
       word-wrap: break-word;
@@ -292,17 +291,12 @@
 
   .atk-comment-avatar {
     flex-shrink: 0;
-    padding-left: 10px;
 
     .atk-comment-avatar-image {
       width: 50px;
       height: 50px;
       border-radius: calc($block-radius / 2);
       display: block;
-    }
-
-    @media only screen and (max-width: 640px) {
-      padding-left: 10px;
     }
   }
 
