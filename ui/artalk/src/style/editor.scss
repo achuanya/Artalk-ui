@@ -310,10 +310,15 @@
     cursor: pointer;
     
     .atk-main-editor {
+      margin-bottom: 0;
+    }
+
+    .atk-main-editor {
       .atk-textarea-wrap {
         .atk-textarea {
-          height: 44px !important;
-          min-height: 44px !important;
+          box-sizing: border-box;
+          height: 46px !important;
+          min-height: 46px !important;
           resize: none;
           cursor: pointer;
         }

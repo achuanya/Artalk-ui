@@ -170,9 +170,9 @@ Artalk.init({ site: 'Artalk 官网' })
 
 ```yaml
 frontend:
-  placeholder: 键入内容...
-  noComment: 「此时无声胜有声」
-  sendBtn: 发送评论
+  placeholder: Leave a comment
+  noComment: 「语不惊人死不休」
+  sendBtn: 发送
   emoticons: 'https://raw.githubusercontent.com/ArtalkJS/Emoticons/master/grps/default.json'
   # ----- 此处省略 -------
   # 与前端配置项名称保持一致
