@@ -230,8 +230,8 @@ frontend:
   voteDown: false
   uaBadge: false
   listSort: true
-  commentCount: true
-  listHeader: true
+  commentCount: false
+  listHeader: false
   preview: true
   flatMode: auto
   darkMode: inherit
