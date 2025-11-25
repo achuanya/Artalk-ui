@@ -28,6 +28,8 @@ export const Defaults: Readonly<RequiredExcept<Config, ExcludedKeys>> = {
   uaBadge: ARTALK_LITE ? false : true,
   listSort: true,
   preview: ARTALK_LITE ? false : true,
+  commentCount: true,
+  listHeader: true,
   countEl: '.artalk-comment-count',
   pvEl: '.artalk-pv-count',
   statPageKeyAttr: 'data-page-key',

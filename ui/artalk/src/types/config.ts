@@ -97,6 +97,12 @@ export interface Config {
   /** Preview feature for comments */
   preview: boolean
 
+  /** Show comment count in list header */
+  commentCount: boolean
+
+  /** Show list header */
+  listHeader: boolean
+
   /** Selector for the element binding to the comment count */
   countEl: string
 
