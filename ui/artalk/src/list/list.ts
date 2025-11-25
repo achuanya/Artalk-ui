@@ -41,7 +41,22 @@ export class List implements IList {
 
     // Init base element
     this.$el = Utils.createElement(ListHTML)
+    if (this.opts.getConf().get().listHeader === false) {
+      const $header = this.$el.querySelector<HTMLElement>('.atk-list-header')
+      if ($header) $header.style.display = 'none'
+      this.$el.classList.add('atk-no-header')
+    }
     this.$commentsWrap = this.$el.querySelector('.atk-list-comments-wrap')!
+
+    // Watch config changes for list header toggle
+    this.opts
+      .getConf()
+      .watchConf(['listHeader'], (conf) => {
+        const $header = this.$el.querySelector<HTMLElement>('.atk-list-header')
+        if ($header) $header.style.display = conf.listHeader === false ? 'none' : ''
+        if (conf.listHeader === false) this.$el.classList.add('atk-no-header')
+        else this.$el.classList.remove('atk-no-header')
+      })
 
     // Init paginator
     initListPaginatorFunc({

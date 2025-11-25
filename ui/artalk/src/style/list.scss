@@ -127,6 +127,7 @@
 
   & > .atk-list-body {
     min-height: 150px;
+    padding-top: 0;
 
     .atk-list-comments-wrap {
       .atk-main-editor {
@@ -154,6 +155,10 @@
       }
     }
   }
+}
+
+.artalk > .atk-list.atk-no-header > .atk-list-body {
+  padding-top: 15px;
 }
 
 .atk-list-no-comment {

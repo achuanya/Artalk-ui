@@ -4,6 +4,22 @@ import $t from '@/i18n'
 
 export const Count: ArtalkPlugin = (ctx) => {
   const list = ctx.inject('list')
+  const conf = ctx.inject('config').get()
+
+  if (conf.commentCount === false) {
+    const $wrap = list.getEl().querySelector<HTMLElement>('.atk-comment-count')
+    if ($wrap) $wrap.style.display = 'none'
+  } else {
+    const $wrap = list.getEl().querySelector<HTMLElement>('.atk-comment-count')
+    if ($wrap) $wrap.style.display = ''
+  }
+
+  // react to remote config updates
+  ctx.inject('config').watchConf(['commentCount'], (c) => {
+    const $wrap = list.getEl().querySelector<HTMLElement>('.atk-comment-count')
+    if (!$wrap) return
+    $wrap.style.display = c.commentCount === false ? 'none' : ''
+  })
 
   const refreshCountNumEl = () => {
     const $count = list.getEl().querySelector('.atk-comment-count .atk-text')
