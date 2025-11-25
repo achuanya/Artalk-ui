@@ -408,9 +408,9 @@ frontend:
   # Comment sorting
   listSort: true
   # Show comment count in list header
-  commentCount: true
+  commentCount: false
   # Show list header
-  listHeader: true
+  listHeader: false
   # Editor real-time preview
   preview: true
   # Flatten mode ["auto", true, false]
