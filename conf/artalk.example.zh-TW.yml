@@ -416,9 +416,9 @@ frontend:
   # 評論排序功能
   listSort: true
   # 評論數
-  commentCount: true
+  commentCount: false
   # 通知中心
-  listHeader: true
+  listHeader: false
   # 編輯器實時預覽功能
   preview: true
   # 平鋪模式 ["auto", true, false]
